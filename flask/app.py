@@ -82,7 +82,7 @@ def getCVE(cve_id):
     
 
 # Database methods
-conn = psycopg2.connect(host="172.19.0.2", dbname="jopents", user="jopents", password=str(secret.passwd))
+conn = psycopg2.connect(host="172.19.0.2", port="5432", dbname="jopents", user="jopents", password=str(secret.passwd))
 jopents = conn.cursor()
 
 def dbSearchVendors(qry):

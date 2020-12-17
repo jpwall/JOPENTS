@@ -17,7 +17,7 @@ def callCVE():
         print("Reason: ", e.reason)
 
 # Initialize connection to Postgres container
-conn = psycopg2.connect(host="172.19.0.2", dbname="jopents", user="jopents", password=str(secret.passwd))
+conn = psycopg2.connect(host="172.19.0.2", port="5432" dbname="jopents", user="jopents", password=str(secret.passwd))
 jopents = conn.cursor()
 
 # Go through each of the vendors and add them if they aren't in Postgres yet

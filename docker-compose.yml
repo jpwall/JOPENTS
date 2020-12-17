@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    build: ./db
+    environment:
+      POSTGRES_USER: 'jopents'
+      POSTGRES_PASSWORD: 'j0p3nt$_AAfcD'
+      POSTGRES_DB: 'jopents'
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+
+  flask:
+    depends_on:
+      - db
+    build: ./flask
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./flask:/usr/src/jopents
+      - ./cron:/etc/crontabs/root

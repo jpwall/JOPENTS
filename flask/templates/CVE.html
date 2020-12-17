@@ -1,0 +1,224 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="/static/css/style.css" rel="stylesheet">
+        <title>{{id}}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <b>Date:</b>
+        <p>{{date}}</p>
+
+        <b>Severity:</b>
+        <p>{{severity}}</p>
+
+        <b>Summary:</b>
+        <p>{{summary}}</p>
+
+        <b>Access ease, vector, auth:</b>
+        <p>{{access_ease}}, {{access_vector}}, {{access_auth}}</p>
+
+        <b>Impact availability, confidentiality, integrity:</b>
+        <p>{{impact_avail}}, {{impact_conf}}, {{impact_integ}}</p>
+
+        <b>ATTACKS:</b><br>
+        {% for i in range(capec_len) %}
+            <b>Name:</b>
+            <p>{{capec[i]['name']}}</p>
+
+            <b>Prerequisites:</b>
+            <p>{{capec[i]['prerequisites']}}</p>
+
+            <b>Solutions:</b>
+            <p>{{capec[i]['solutions']}}</p>
+        {% endfor %}
+
+        <b>References:</b><br>
+        {% for i in range(r_len) %}
+            <a href="{{references[i]}}">
+                {{references[i]}}
+            </a><br>
+        {% endfor %}
+
+        <b>Vulnerable Products:</b>
+        {% for i in range(v_len) %}
+            <p>{{vuln[i]}}</p>
+        {% endfor %}
+    </body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{id}}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <style type="text/css">
+            .h-divider {
+                margin-top:5px;
+                margin-bottom:5px;
+                height:1px;
+                width:100%;
+                border-top:1px solid gray;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-lg">
+            <div class="row">
+                <div class="container-fluid d-flex justify-content-center align-items-center">
+                    <a class="navbar-brand" href="/"><h2 class="text-center">New Search</h2></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="text-center">{{id}}:</h3>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 d-flex flex-row">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="card col-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Date</h5>
+                                    <p class="card-text">{{date}}</p>
+                                </div>
+                            </div>
+                            <div class="card col-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Severity</h5>
+                                    <p class="card-text">{{severity}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 d-flex flex-row">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="card col-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Access</h5>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Ease</th>
+                                                <th scope="col">Vector</th>
+                                                <th scope="col">Auth</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">{{access_ease}}</td>
+                                                <td>{{access_vector}}</td>
+                                                <td>{{access_auth}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card col-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Impact</h5>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Availability</th>
+                                                <th scope="col">Confidentiality</th>
+                                                <th scope="col">Integrity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">{{impact_avail}}</td>
+                                                <td>{{impact_conf}}</td>
+                                                <td>{{impact_integ}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 d-flex flex-row">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="card col-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">Summary</h5>
+                                    <p class="card-text">{{summary}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="accordion col-8" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Exploits
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                {% for i in range(capec_len) %}
+                                    <h3>{{capec[i]['name']}}</h3>
+                                    <p>{{capec[i]['summary']}}</p>
+                                    <h4>Solutions</h4>
+                                    <p>{{capec[i]['solutions']}}</p>
+                                    <div class="h-divider"></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Vulnerable Products
+                        </button>
+                      </h2>
+                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          {% for i in range(v_len) %}
+                            <p>{{vuln[i]}}</p>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                References
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                {% for i in range(r_len) %}
+                                    <a href="{{references[i]}}"><p>{{references[i]}}</p></a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </body>
+</html>

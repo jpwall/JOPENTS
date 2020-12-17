@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>JOPENTS Search</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container-lg">
+            <div class="row">
+                <div class="container-fluid d-flex justify-content-center align-items-center">
+                    <a class="navbar-brand" href="/"><h2 class="text-center">JOPENTS</h2></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="text-center">Search by company, developer, or project for CVEs!</h3>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <form class="d-flex flex-column align-items-center" id="vSearch" method="GET" action="/search">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="search" name="search">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-5 d-flex flex-column">
+                    <h4 class="text-center">Vendors:</h4>
+                    <p class="text-center">(Software creators or distributors - click to view and load all products)</p>
+                    <table class="table col-8">
+                        <thead>
+                            <tr>
+                                <th scope="col">VID</th>
+                                <th scope="col">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(vcount) %}
+                                {% if i <= 80 %}
+                                    <tr>
+                                        <td scope="row">{{vendors[i][0]}}</td>
+                                        <td><a href="/vendor/{{vendors[i][0]}}">{{vendors[i][1]}}</a</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if vcount >= 80 %}
+                        <p class="text-center">
+                            Showing 80 of {{vcount}} results (try narrowing search)
+                        </p>
+                    {% else %}
+                        <p class="text-center">
+                            Showing {{vcount}} of {{vcount}} results
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="col-5 d-flex flex-column">
+                    <h4 class="text-center">Products [cached]:</h4>
+                    <p class="text-center">(Software releases - click to view all CVEs)</p>
+                    <table class="table col-8">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-5">PID</th>
+                                <th scope="col" class="col-7">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(pcount) %}
+                                {% if i <= 80 %}
+                                    <tr>
+                                        <td scope="row" class="col-5">{{products[i][0]}}</td>
+                                        <td class="col-5"><a href="/product/{{products[i][0]}}">{{products[i][1]}}</a</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if pcount >= 80 %}
+                        <p class="text-center">
+                            Showing 80 of {{pcount}} results
+                        </p>
+                    {% else %}
+                        <p class="text-center">
+                            Showing {{pcount}} of {{pcount}} results
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="/static/css/style.css" rel="stylesheet">
+        <title>{{vendor}} {{product}} CVEs</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="mainContainer">
+            {% for i in range(ccount) %}
+                    <a href="/cve/{{cve_data[i]}}">
+                        <div class="productButton">
+                            {{cve_data[i]}}
+                        </div>
+                    </a>
+            {% endfor %}
+            <div class="vendorCount">
+                Showing {{ccount}} CVEs for {{vendor}} {{product}}
+            </div>
+        </div>
+    </body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{vendor}} {{product}} CVEs</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container-lg">
+            <div class="row">
+                <div class="container-fluid d-flex justify-content-center align-items-center">
+                    <a class="navbar-brand" href="/"><h2 class="text-center">New Search</h2></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="text-center">{{vendor}} {{product}} CVEs:</h3>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6 d-flex flex-column">
+                    <table class="table col-8">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-7">CVE ID</th>
+                                <th scope="col" class="col-5">Parsed Version #</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(ccount) %}
+                                <tr>
+                                    <td scope="row" class="col-7"><a href="/cve/{{cve_data[i][0]}}">{{cve_data[i][0]}}</a></td>
+                                    <td class="col-5">{{cve_data[i][1]}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <p class="text-center">
+                        Showing {{ccount}} of {{ccount}} results
+                    </p>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+    </body>
+</html>
